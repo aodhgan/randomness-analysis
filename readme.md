@@ -1,12 +1,15 @@
+# Random Analysis
+Collects values each block from Random.sol and analyses for random value uniformity.
+
 ## Collect Data
-npm i
-tsx index.ts > log_file_name
+- Install: `npm i`
+- Run: `tsx index.ts > log_file_name`
 
 ## Run analysis
-python3 -m venv venv
-source venv/bin/activate  # macOS/Linux
-pip install -r requirements.txt
-python3 main.py log_file_name 
+- `python3 -m venv venv`
+- `source venv/bin/activate`
+- `pip install -r requirements.txt`
+- `python3 main.py log_file_name`
 
 ## Interpret results
 With sample size 3286:
