@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "tsx": "^4.19.2",
     "viem": "^2.22.23"
   }
 }

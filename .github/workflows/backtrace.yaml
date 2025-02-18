@@ -1,0 +1,44 @@
+name: Randomness Monitor
+
+on:
+  # Run once a day at 00:00 UTC (for example). Customize as needed:
+  schedule:
+    - cron: '0 * * * *'
+  # Allow manual triggers
+  workflow_dispatch:
+
+jobs:
+  run-randomness-monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Use Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run the monitor script
+        run: tsx run.ts
+    
+
+      - name: Commit and push results
+        # We'll do a git commit and push of both the CSV and the checkpoint
+        run: |
+          # Configure git user
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          
+          # If the script actually updated files, commit
+          if [ -n "$(git status --porcelain)" ]; then
+            git add randomness-results.csv checkpoint.txt
+            git commit -m "chore: update randomness results [skip ci]"
+            git push
+          else
+            echo "No changes to commit."
+          fi
