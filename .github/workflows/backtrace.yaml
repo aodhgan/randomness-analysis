@@ -31,10 +31,12 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          
+          git status
           if [ -n "$(git status --porcelain)" ]; then
             git add randomness-results.csv checkpoint.txt
             git commit -m "chore: update randomness results [skip ci]"
             git push
           else
             echo "No changes to commit."
+          fi
+          echo "finished"
