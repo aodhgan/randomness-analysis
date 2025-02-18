@@ -24,7 +24,7 @@ jobs:
         run: npm install
 
       - name: Run the monitor script
-        run: tsx run.ts
+        run: npx tsx run.ts
     
 
       - name: Commit and push results
