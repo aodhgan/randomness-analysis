@@ -14,18 +14,18 @@ export const contractAbi = parseAbi([
   'function random() view returns (bytes32)',
   'function randomForTimestamp(uint256) view returns (bytes32)',
 ])
-console.log("blockNumber,randomValue")
-client.watchBlocks({
-  onBlock: async (block) => {
-    try {
-      const randomValue = await client.readContract({
-        address: RANDOM_ADDRESS,
-        abi: contractAbi,
-        functionName: 'random',
-      })
-      console.log(`${block.number},${randomValue.toString()}`)
-    } catch (err) {
-      console.error('Error calling random():', err)
-    }
-  },
-})
+// console.log("blockNumber,randomValue")
+// client.watchBlocks({
+//   onBlock: async (block) => {
+//     try {
+//       const randomValue = await client.readContract({
+//         address: RANDOM_ADDRESS,
+//         abi: contractAbi,
+//         functionName: 'random',
+//       })
+//       console.log(`${block.number},${randomValue.toString()}`)
+//     } catch (err) {
+//       console.error('Error calling random():', err)
+//     }
+//   },
+// })
