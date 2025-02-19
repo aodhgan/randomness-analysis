@@ -1,15 +1,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { client, RANDOM_ADDRESS, contractAbi } from './index.js';
+import { client, RANDOM_ADDRESS, contractAbi } from './utils/setup.js';
 
 async function runMonitor() {
-    // Path to the file that stores the *last block processed* (the checkpoint)
     const checkpointFilePath = path.join(process.cwd(), 'checkpoint.txt');
-    
-    // Path to file where you store appended results
     const resultsFilePath = path.join(process.cwd(), 'randomness-results.csv');
+    const missedBlocksFilePath = path.join(process.cwd(), 'missed-blocks.csv');
     
-    // Read the last checkpoint; if none, pick a default block.
     let startBlock: bigint;
     const lastCheckpoint = fs.readFileSync(checkpointFilePath, 'utf8');
     startBlock = BigInt(lastCheckpoint.trim());
@@ -17,7 +14,7 @@ async function runMonitor() {
     
     console.log(`Starting from block ${startBlock} up to ${latestBlock}`);
     
-    // Generate data
+    
     let csvData = '';
     
     for (let blockNumber = startBlock; blockNumber <= latestBlock; blockNumber++) {
@@ -31,7 +28,8 @@ async function runMonitor() {
         csvData += `${blockNumber},${randomValue.toString()}\n`;
         console.log(`${blockNumber},${randomValue.toString()}`);
         } catch (err) {
-        console.error('Error calling random():', err);
+            console.error('Error calling random():', err);
+            fs.appendFileSync(missedBlocksFilePath, `${blockNumber}\n`);
         }
     }
     
