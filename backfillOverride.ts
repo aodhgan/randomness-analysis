@@ -1,4 +1,4 @@
-import { client, RANDOM_ADDRESS, contractAbi } from './index';
+import { client, RANDOM_ADDRESS, contractAbi } from './utils/setup';
 
 const startBlock = 8321277 - 50000;
 const endBlock = 8321277;
