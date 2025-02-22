@@ -28,8 +28,13 @@ async function runMonitor() {
         csvData += `${blockNumber},${randomValue.toString()}\n`;
         console.log(`${blockNumber},${randomValue.toString()}`);
         } catch (err) {
-            console.error('Error calling random():', err);
-            fs.appendFileSync(missedBlocksFilePath, `${blockNumber}\n`);
+            console.error(`Error calling random() at block ${blockNumber}:`, err);
+            try {
+                fs.appendFileSync(missedBlocksFilePath, `${blockNumber}\n`);
+                console.log(`Recorded missed block ${blockNumber}`);
+            } catch (fsErr) {
+                console.error(`Error writing to missed blocks file for block ${blockNumber}:`, fsErr);
+            }
         }
     }
     
