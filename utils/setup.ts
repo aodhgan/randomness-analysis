@@ -8,8 +8,3 @@ export const client = createPublicClient({
   transport: http('https://happy-testnet-sepolia.rpc.caldera.xyz/http'), 
   pollingInterval: 500,
 })
-
-export const contractAbi = parseAbi([
-  'function random() view returns (bytes32)',
-  'function randomForTimestamp(uint256) view returns (bytes32)',
-])

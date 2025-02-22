@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { client, RANDOM_ADDRESS, contractAbi } from './utils/setup.js';
+import { contractToAbi } from './utils/randomAbi.js';
 
 async function runMonitor() {
     const checkpointFilePath = path.join(process.cwd(), 'checkpoint.txt');
@@ -21,7 +22,7 @@ async function runMonitor() {
         try {
         const randomValue = await client.readContract({
             address: RANDOM_ADDRESS,
-            abi: contractAbi,
+            abi: contractToAbi.Random,
             functionName: 'random',
             blockNumber: blockNumber
         });
