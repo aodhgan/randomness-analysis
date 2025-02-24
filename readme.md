@@ -1,17 +1,26 @@
 # Random Analysis
 Collects values each block from Random.sol and analyses for random value uniformity.
 
-## Collect Data
-- Install: `npm i`
-- Run: `tsx index.ts > log_file_name`
+## Usage
+### Collection
+Periodically runs a chron job as a workflow to call `random()` from the last recorded block in `checkpoint.txt` and records output `blockNumber, randomValue` tuples in `randomness-results.csv`.
 
-## Run analysis
+Helpers are also provided:
+Running `tsx utils/getRandomAtBlock.ts` will get the value at a defined block (constant in file)
+
+### Analysis
+#### Setup Python env (if required)
 - `python3 -m venv venv`
 - `source venv/bin/activate`
 - `pip install -r requirements.txt`
-- `python3 main.py log_file_name`
 
-## Interpret results
+#### Run missed blocks check
+- `python3 analysis/checkBlockNumbers.py `
+
+#### Run Uniformity/Quality analysis
+- `python3 main.py log_file_name.csv`
+
+#### Example Results Interpretation
 With sample size 3286:
 Bit Deviations
 Each bit is expected to be “1” about half the time. With 𝑛 = 3286
