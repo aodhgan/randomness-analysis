@@ -1,6 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import { client, RANDOM_ADDRESS, contractAbi } from './utils/setup.js';
+import { client, RANDOM_ADDRESS } from './utils/setup.js';
 import { contractToAbi } from './utils/randomAbi.js';
 
 async function runMonitor() {

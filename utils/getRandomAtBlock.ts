@@ -1,12 +1,13 @@
-import { client, RANDOM_ADDRESS, contractAbi } from './setup';
+import { client, RANDOM_ADDRESS } from './setup';
+import { contractToAbi } from './randomAbi.js';
 
 async function run(){
-    const blockNumber = 8366864n;
+    const blockNumber = 344287n;
     
     try {
         const randomValue = await client.readContract({
             address: RANDOM_ADDRESS,
-            abi: contractAbi,
+            abi: contractToAbi.Random,
             functionName: 'random',
             blockNumber: blockNumber,
         })
