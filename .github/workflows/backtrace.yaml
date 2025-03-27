@@ -38,7 +38,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run the analysis script
-        run: python checkBlockNumbers.py
+        run: python analysis/checkBlockNumbers.py
 
       - name: Commit and push results
         run: |
