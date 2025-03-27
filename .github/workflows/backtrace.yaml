@@ -26,6 +26,19 @@ jobs:
 
       - name: Run the monitor script
         run: npx tsx run.ts
+    
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run the analysis script
+        run: python checkBlockNumbers.py
 
       - name: Commit and push results
         run: |
