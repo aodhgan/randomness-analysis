@@ -46,7 +46,7 @@ jobs:
           git config user.email "github-actions@github.com"
           git status
           if [ -n "$(git status --porcelain)" ]; then
-            git add randomness-results.csv checkpoint.txt
+            git add randomness-results.csv checkpoint.txt missed-blocks.csv
             git commit -m "chore: update randomness results [skip ci]"
             git push
           else

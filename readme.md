@@ -6,8 +6,8 @@ Collects values each block from Random.sol and analyses for random value uniform
 Periodically runs a chron job as a workflow to call `random()` from the last recorded block in `checkpoint.txt` and records output `blockNumber, randomValue` tuples in `randomness-results.csv`.
 
 Helpers are also provided:
-- Running `tsx utils/getRandomAtBlock.ts` will get the value at a defined block (constant in file)
-
+- Running `tsx utils/getRandomAtBlock.ts` will get the value at a defined block (constant defined in file). This can serve as a spot check tool. 
+- Running `tsx utils/activeMonitor` will continuously monitor for new blocks and print the random value associated with that block if available.
 ### Analysis
 #### Setup Python env (if required)
 - `python3 -m venv venv`
