@@ -40,13 +40,16 @@ jobs:
       - name: Run the analysis script
         run: python analysis/checkBlockNumbers.py
 
+      - name: Run checkpoint range analysis
+        run: python analysis/analyze_checkpoint_range.py
+      
       - name: Commit and push results
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git status
           if [ -n "$(git status --porcelain)" ]; then
-            git add randomness-results.csv checkpoint.txt missed-blocks.csv
+            git add randomness-results.csv checkpoint.txt checkpoints.txt missed-blocks.csv
             git commit -m "chore: update randomness results [skip ci]"
             git push
           else

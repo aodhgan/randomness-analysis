@@ -5,6 +5,7 @@ import { contractToAbi } from './utils/randomAbi.js';
 
 async function runMonitor() {
     const checkpointFilePath = path.join(process.cwd(), 'checkpoint.txt');
+    const checkpointsFilePath = path.join(process.cwd(), 'checkpoints.txt');
     const resultsFilePath = path.join(process.cwd(), 'randomness-results.csv');
     const missedBlocksFilePath = path.join(process.cwd(), 'missed-blocks.csv');
     
@@ -44,6 +45,7 @@ async function runMonitor() {
     
     // Update the checkpoint file to store the last block we processed
     fs.writeFileSync(checkpointFilePath, latestBlock.toString());
+    fs.writeFileSync(checkpointsFilePath, `${latestBlock.toString()}\n`);
 
     console.log("Done.");
 }

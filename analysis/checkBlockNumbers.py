@@ -46,7 +46,7 @@ missing_percentage = (missing_count / total_blocks) * 100 if total_blocks > 0 el
 
 if missing:
     print("Missing block numbers:", missing)
-    print(f"Percentage of missed blocks: {missing_percentage:.2f}%")
+    print(f"Overall percentage of missed blocks: {missing_percentage:.2f}%")
     print(f"Longest streak of missing blocks: {longest_streak}")
     print(f"Longest streak block numbers: {longest_streak_blocks}")
 else:
