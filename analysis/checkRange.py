@@ -128,27 +128,6 @@ def analyze_block_range(start_block, end_block):
     else:
         print("No missing blocks in this range!")
 
-def analyze_all_checkpoint_ranges():
-    """Analyze all consecutive checkpoint ranges"""
-    checkpoints_file = "checkpoints.txt"
-    checkpoints = read_checkpoints(checkpoints_file)
-    
-    if len(checkpoints) < 2:
-        print("Not enough checkpoints to analyze ranges")
-        return
-    
-    print("ANALYZING ALL CHECKPOINT RANGES")
-    print("===============================")
-    
-    # Analyze each consecutive checkpoint pair
-    for i in range(len(checkpoints) - 1):
-        start_block = checkpoints[i]
-        end_block = checkpoints[i+1]
-        analyze_block_range(start_block, end_block)
-
 if __name__ == "__main__":
     print("==== LATEST CHECKPOINT RANGE ANALYSIS ====")
     analyze_latest_checkpoint_range()
-    
-    print("\n==== ALL CHECKPOINT RANGES ANALYSIS ====")
-    analyze_all_checkpoint_ranges()
