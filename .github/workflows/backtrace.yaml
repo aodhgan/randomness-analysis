@@ -41,7 +41,7 @@ jobs:
         run: python analysis/checkBlockNumbers.py
 
       - name: Run checkpoint range analysis
-        run: python analysis/analyze_checkpoint_range.py
+        run: python analysis/checkRange.py
       
       - name: Commit and push results
         run: |
