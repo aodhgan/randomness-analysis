@@ -45,7 +45,7 @@ async function runMonitor() {
     
     // Update the checkpoint file to store the last block we processed
     fs.writeFileSync(checkpointFilePath, latestBlock.toString());
-    fs.writeFileSync(checkpointsFilePath, `${latestBlock.toString()}\n`);
+    fs.appendFileSync(checkpointsFilePath, `${latestBlock.toString()}\n`);
 
     console.log("Done.");
 }
